@@ -6,7 +6,7 @@
 desc "Let's use Istio's circuit breaking / outlier detection to kick out those misbehaving pods"
 read -s
 
-run "istioctl create -f $(relative istio/recommendation_cb_policy_pool_ejection.yml)"
+run "istioctl create -f $(relative istio/recommendation_cb_policy_pool_ejection.yml) -n tutorial"
 
 desc "Now we see the offending, delayed service timed out and ejected from the pool"
 read -s
@@ -18,5 +18,5 @@ read -s
 
 desc "easy: just retry!"
 
-run "istioctl create -f $(relative istio/route-rule-recommendation-timeout-retry.yml)"
+run "istioctl create -f $(relative istio/route-rule-recommendation-timeout-retry.yml) -n tutorial"
 

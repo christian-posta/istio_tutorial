@@ -54,10 +54,10 @@ read -s
 #
 # everything to v1?
 desc "Let's route everything to v1"
-run "istioctl create -f $(relative istio/route-rule-recommendation-v1.yml)"
+run "istioctl create -f $(relative istio/route-rule-recommendation-v1.yml) -n tutorial"
 
 
 desc "Using Istio, let's purposefully balance traffic between v1 and v2"
-run "istioctl create -f $(relative istio/route-rule-recommendation-v1_and_v2.yml)"
+run "istioctl create -f $(relative istio/route-rule-recommendation-v1_and_v2.yml) -n tutorial"
 
 

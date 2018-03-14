@@ -4,10 +4,10 @@
 
 
 desc "Let's simulate some issues with v2 deployment. Using Istio, let's inject periodic faults into v2"
-run "istioctl create -f $(relative istio/route-rule-recommendation-503.yml)"
+run "istioctl create -f $(relative istio/route-rule-recommendation-503.yml) -n tutorial"
 
 desc "Now, let's add a Retry policy for our service to smooth out the errors"
-run "istioctl create -f $(relative istio/route-rule-recommendation-retry.yml)"
+run "istioctl create -f $(relative istio/route-rule-recommendation-retry.yml) -n tutorial"
 
 desc "clean up"
 

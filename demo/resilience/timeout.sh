@@ -14,7 +14,7 @@ desc "Let's enforce timeouts"
 read -s
 
 
-run "istioctl create -f $(relative istio/route-rule-recommendation-timeout.yml)"
+run "istioctl create -f $(relative istio/route-rule-recommendation-timeout.yml) -n tutorial"
 
 desc "Now we see errors. That's no good either, but it's better than unbounded latency"
 
