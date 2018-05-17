@@ -21,7 +21,7 @@ spec:
       - env:
         - name: JAVA_OPTIONS
           value: -Xmx256m
-        image: example/recommendation:v2
+        image: ceposta/recommendation:v2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
