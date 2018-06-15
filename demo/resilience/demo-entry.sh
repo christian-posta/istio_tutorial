@@ -36,11 +36,11 @@ read -s
 desc "we will create a new deployment and inject the Istio sidecar. Let's take a look at what that looks like:"
 
 run "cat $(relative kube/recommendation-v2-deployment.yml)"
-run "istioctl kube-inject --debug -f $(relative kube/recommendation-v2-deployment.yml)"
+run "istioctl kube-inject  -f $(relative kube/recommendation-v2-deployment.yml)"
 
 desc "Okay. let's actually create it:"
 read -s
-run "kubectl apply -f <(istioctl kube-inject --debug -f $(relative kube/recommendation-v2-deployment.yml))"
+run "kubectl apply -f <(istioctl kube-inject -f $(relative kube/recommendation-v2-deployment.yml))"
 
 run "kubectl get pod -w"
 
@@ -54,10 +54,10 @@ read -s
 #
 # everything to v1?
 desc "Let's route everything to v1"
-run "istioctl create -f $(relative istio/route-rule-recommendation-v1.yml) -n tutorial"
+run "istioctl create -f $(relative istio/recommendation-service-all-v1.yml) -n tutorial"
 
 
 desc "Using Istio, let's purposefully balance traffic between v1 and v2"
-run "istioctl create -f $(relative istio/route-rule-recommendation-v1_and_v2.yml) -n tutorial"
+run "istioctl replace -f $(relative istio/recommendation-service-v1-v2-50-50.yml) -n tutorial"
 
 
