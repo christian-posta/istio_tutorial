@@ -23,17 +23,17 @@ SOURCE_DIR=$PWD
 
 # turn off the delay stuff for now
 #kubectl scale deploy recommendation-delay-v2 --replicas=0
-oc apply -f <(istioctl kube-inject -f $(relative kube/recommendation-v1-deployment.yml))
-oc apply -f $(relative kube/recommendation-service.yml)
+kubectl apply -f <(istioctl kube-inject -f $(relative kube/recommendation-v1-deployment.yml))
+kubectl apply -f $(relative kube/recommendation-service.yml)
 
-oc apply -f <(istioctl kube-inject -f $(relative kube/preference-deployment.yml))
-oc apply -f $(relative kube/preference-service.yml)
+kubectl apply -f <(istioctl kube-inject -f $(relative kube/preference-deployment.yml))
+kubectl apply -f $(relative kube/preference-service.yml)
 
-oc apply -f <(istioctl kube-inject -f $(relative kube/customer-deployment.yml))
-oc apply -f $(relative kube/customer-service.yml)
+kubectl apply -f <(istioctl kube-inject -f $(relative kube/customer-deployment.yml))
+kubectl apply -f $(relative kube/customer-service.yml)
 
-oc expose service customer
-oc get route
+#kubectl expose service customer
+#kubectl get route
 
 
 

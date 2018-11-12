@@ -54,10 +54,12 @@ read -s
 #
 # everything to v1?
 desc "Let's route everything to v1"
-run "istioctl create -f $(relative istio/recommendation-service-all-v1.yml) -n tutorial"
+run "kubectl create -f $(relative istio/recommendation-service-all-v1.yml)"
 
+desc "Let's do a canary release of v2"
+run "kubectl replace -f $(relative istio/recommendation-service-v1-v2-90-10.yml)"
 
 desc "Using Istio, let's purposefully balance traffic between v1 and v2"
-run "istioctl replace -f $(relative istio/recommendation-service-v1-v2-50-50.yml) -n tutorial"
+run "kubectl replace -f $(relative istio/recommendation-service-v1-v2-50-50.yml)"
 
 
